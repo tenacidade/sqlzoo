@@ -1,2 +1,1 @@
-# sqlzoo
-Solucoes do SQL ZOO feitas por mim =)
+SQL ZOO: Exercises
