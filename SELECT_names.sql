@@ -1,3 +1,5 @@
+--All answers here are to this link: https://sqlzoo.net/wiki/SELECT_names
+
 /*SELECT NAMES
 
 Pattern Matching Strings
@@ -66,3 +68,60 @@ Find the countries that have three or more a in the name
 */
 SELECT name FROM world
   WHERE name LIKE '%a%a%a%'
+  
+--8#
+/*
+India and Angola have an n as the second character. You can use the underscore as a single character wildcard.
+
+SELECT name FROM world
+ WHERE name LIKE '_n%'
+ORDER BY name
+
+Find the countries that have "t" as the second character.
+*/
+SELECT name FROM world
+ WHERE name LIKE '_t%'
+ORDER BY name
+
+--9#
+/*
+Lesotho and Moldova both have two o characters separated by two other characters.
+
+Find the countries that have two "o" characters separated by two others.
+*/
+SELECT name FROM world
+ WHERE name LIKE '%o__o%'
+
+--10#
+/*
+Cuba and Togo have four characters names.
+
+Find the countries that have exactly four characters.
+*/
+SELECT name FROM world
+ WHERE name LIKE '____'
+
+--Harder Questions
+--Well done for getting this far.
+--The next questions are optional and only for students who are finding the basic questions too easy.
+
+--11#
+/*
+The capital of Luxembourg is Luxembourg. Show all the countries where the capital is the same as the name of the country
+
+Find the country where the name is the capital city.
+*/
+SELECT name FROM world
+ WHERE name = capital
+ 
+--12#
+/*
+The capital of Mexico is Mexico City. Show all the countries where the capital has the country together with the word "City".
+
+Find the country where the capital is the country plus "City".
+
+The concat function
+The function concat is short for concatenate - you can use it to combine two or more strings.
+*/
+SELECT name FROM world 
+ WHERE capital LIKE concat (name, '%city')
