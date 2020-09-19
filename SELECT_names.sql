@@ -1,5 +1,7 @@
 --All answers here are to this link: https://sqlzoo.net/wiki/SELECT_names
 
+--All answers here i got the smiley face
+
 /*SELECT NAMES
 
 Pattern Matching Strings
@@ -125,3 +127,11 @@ The function concat is short for concatenate - you can use it to combine two or 
 */
 SELECT name FROM world 
  WHERE capital LIKE concat (name, '%city')
+
+--13#
+/*
+Find the capital and the name where the capital includes the name of the country.
+*/
+SELECT capital, name
+FROM world
+WHERE capital LIKE concat('%', name, '%')
