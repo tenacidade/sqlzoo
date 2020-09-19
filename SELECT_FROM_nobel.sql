@@ -82,8 +82,58 @@ Show the year, subject, and name of winners for 1980 excluding Chemistry and Med
 */
 SELECT yr, subject, winner
 FROM nobel
-WHERE yr = 1980 AND subject NOT LIKE 'Chemistry' AND subject NOT LIKE 'Medicine'
+WHERE yr = 1980 AND subject != 'Chemistry' AND subject != 'Medicine'
 
 --10#
+/*
+Show year, subject, and name of people who won a 'Medicine' prize in an early year (before 1910, not including 1910) together with winners of a 'Literature' prize in a later year (after 2004, including 2004)
+*/
+SELECT yr, subject, winner
+FROM nobel
+WHERE subject = 'Medicine' AND yr < 1910
+OR subject = 'Literature' AND yr >= 2004
 
+-- Harder Questions
 
+--11#
+/*
+Find all details of the prize won by PETER GRÜNBERG
+
+Non-ASCII characters
+The u in his name has an umlaut. You may find this link useful https://en.wikipedia.org/wiki/%C3%9C#Keyboarding
+*/
+SELECT yr, subject, winner
+FROM nobel
+WHERE winner = 'PETER GRÜNBERG'
+
+--12#
+/*
+Find all details of the prize won by EUGENE O'NEILL
+
+Escaping single quotes
+You can't put a single quote in a quote string directly. You can use two single quotes within a quoted string.
+*/
+SELECT yr, subject, winner
+FROM nobel
+WHERE winner = 'EUGENE O''NEILL'
+
+--13#
+/*
+List the winners, year and subject where the winner starts with Sir. Show the the most recent first, then by name order.
+*/
+SELECT winner, yr, subject
+FROM nobel
+WHERE winner LIKE  'Sir%'
+ORDER BY yr DESC, winner --SQLZoo alread put it in order, so this line is optional
+
+--14#
+/*
+The expression subject IN ('Chemistry','Physics') can be used as a value - it will be 0 or 1.
+
+Show the 1984 winners and subject ordered by subject and winner name; but list Chemistry and Physics last.
+*/
+SELECT winner, subject
+FROM nobel
+WHERE yr = 1984
+ORDER BY
+CASE WHEN subject IN('Physics','Chemistry') THEN 1 ELSE 0 END, subject, winner
