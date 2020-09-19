@@ -132,8 +132,16 @@ The expression subject IN ('Chemistry','Physics') can be used as a value - it wi
 
 Show the 1984 winners and subject ordered by subject and winner name; but list Chemistry and Physics last.
 */
+--Optimized version
 SELECT winner, subject
 FROM nobel
 WHERE yr = 1984
 ORDER BY
-CASE WHEN subject IN('Physics','Chemistry') THEN 1 ELSE 0 END, subject, winner
+CASE WHEN subject IN('Physics','Chemistry') THEN 1 ELSE 0 END, subject, winner 
+
+--Also smiley face, but in disagreement with the statement
+SELECT winner, subject, subject IN ('Physics','Chemistry')
+FROM nobel
+WHERE yr=1984
+ORDER BY subject IN ('Physics','Chemistry'),subject,winner
+
