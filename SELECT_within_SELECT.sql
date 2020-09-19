@@ -64,11 +64,11 @@ You can use the function ROUND to remove the decimal places.
 Percent symbol %
 You can use the function CONCAT to add the percentage symbol.
 */
-SELECT name,                                           --CONCAT for % symbol
-       CONCAT(ROUND(100*population/(SELECT population  --ROUND to transfor to %
-                                    FROM world 
-                                    WHERE name = 'Germany')),'%')
-FROM world
+SELECT name,                                                             
+       CONCAT(ROUND(100*population/(SELECT population                    --This within SELECT give us the population of Germany
+                                    FROM world                           --ROUND(100*germanypopulation) give us the the population of Germany in percentage
+                                    WHERE name = 'Germany')),'%')        --CONCAT(percentagegermanypopulation, '%') add the % after the percentage value
+FROM world                                                               --We want the name of these country (first SELECT) FROM world, WHERE continent = 'Europe'
 WHERE continent = 'Europe'
 
 
